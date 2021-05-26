@@ -1,0 +1,138 @@
+body {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: auto 1fr auto;
+}
+
+.site-title {
+  font-weight: bold;
+}
+
+.book-list {
+  margin: 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .book-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.book__cover-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff1d0;
+}
+
+.book__cover {
+  max-width: 64px;
+  max-height: 100px;
+  border-radius: 2px;
+}
+
+.book {
+  position: relative;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.book__title {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.book__icon {
+  width: 18px;
+  height: 18px;
+  color: #333;
+}
+
+.book__by {
+  font-size: 0.85rem;
+}
+
+.book__info {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.book__btns {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+.book__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: black;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.2;
+
+  svg {
+    pointer-events: none;
+  }
+}
+
+.book__btn:hover {
+  opacity: 1;
+}
+
+.book__btn--remove {
+  background-color: rgb(201, 11, 11);
+}
+
+.book__btn svg {
+  color: white;
+  width: 20px;
+  height: 20px;
+}
+
+// Modal
+
+.lib-modal {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  background: white;
+  min-width: 400px;
+  border-left: 1px solid black;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+
+  transform: translateX(120%);
+  transition: 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &.active {
+    transform: translateX(0);
+  }
+}
+
+.lib-modal__header {
+  border-bottom: 1px solid black;
+}
+
+.lib-modal__content {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.lib-modal__footer {
+  border-top: 1px solid black;
+  margin-top: auto;
+}

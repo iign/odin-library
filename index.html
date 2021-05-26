@@ -1,0 +1,143 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>The Odin Project - Library</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="sass/main.scss">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+  <header class="my-3">
+    <div class="container-fluid">
+      <div class="d-flex align-items-center justify-content-between">
+        <h1 class="m-0 site-title">The Library</h1>
+        <button id="btn-add-book" type="button" class="btn btn-dark">Add Book</button>
+      </div>
+    </div>
+  </header>
+  <main class="border-top border-dark">
+
+
+    <div id="book-list" class="book-list">
+    </div>
+
+    <template id="book-template">
+      <div class="book">
+        <div class="row g-0 h-100">
+          <div class="col-md-3 book__cover-wrap">
+            <img id="book__cover" class="book__cover" src="" alt="Book Cover">
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <h2 class="book__title">Unknown</h2>
+              <h6 class="book__by"><span class="text-muted">by</span> <span class="book__author">Author</span></h6>
+              <div class="text-muted d-flex align-items-center">
+                <span id="book__pages" class="book__info me-2">219 pages</span>
+                <span id="book__read" class="book__info">Read</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="book__btns">
+          <button class="book__btn book__btn--read">
+            <span class="visually-hidden">Mark as read</span>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+              </path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+              </path>
+            </svg>
+          </button>
+          <button class="book__btn book__btn--remove">
+            <span class="visually-hidden">Remove book</span>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+              </path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </template>
+
+
+    <div id="modal" class="lib-modal shadow-lg">
+      <form id="form" action="#">
+        <div class="lib-modal__header p-2">
+          <h2 class="lib-modal__title">Add book</h2>
+        </div>
+        <div class="lib-modal__content py-2 px-3 pt-4">
+
+          <div class="mb-3">
+            <label for="form-title" class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" id="form-title" required>
+          </div>
+          <div class="mb-3">
+            <label for="form-author" class="form-label">Author</label>
+            <input type="text" class="form-control" name="author" id="form-author" required>
+          </div>
+          <div class="mb-3">
+            <label for="form-pages" class="form-label">Pages</label>
+            <input type="number" class="form-control" name="pages" id="form-pages" required>
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="read" value="" id="form-read">
+              <label class="form-check-label" for="form-read">
+                Read?
+              </label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="form-cover" class="form-label">Cover image URL</label>
+            <input type="text" class="form-control" name="cover" id="form-cover">
+          </div>
+
+        </div>
+
+        <pre id="object"></pre>
+
+        <div class="lib-modal__footer p-2">
+          <button type="submit" id="btn-save" type="button" class="btn btn-dark me-2 px-4">Save</button>
+          <button type="reset" id="btn-cancel" type="button" class="btn btn-outline-dark">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+
+  </main>
+  <footer class="border-top border-dark">
+    <div class="container-fluid">The Odin Project - Library</div>
+  </footer>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+  <script src="js/main.js"></script>
+
+
+</body>
+
+</html>
